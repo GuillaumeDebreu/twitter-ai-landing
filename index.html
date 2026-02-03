@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reply AI - Smart Twitter Replies Powered by AI</title>
+    <meta name="description" content="Generate perfect Twitter replies with AI. Reply smarter, not harder. Install free Chrome extension.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">✨</span>
+                <span class="brand-text">Reply AI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How it works</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="login.html" class="nav-link nav-link-secondary">Log in</a>
+                <a href="signup.html" class="btn btn-primary btn-sm">Sign up</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span class="badge-text">Chrome Extension • 1,000+ users</span>
+                </div>
+                <h1 class="hero-title">
+                    Reply smarter on X.<br>
+                    <span class="gradient-text">Not harder.</span>
+                </h1>
+                <p class="hero-description">
+                    AI generates perfect replies in seconds. Install the free Chrome extension and never struggle with what to say again.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://chrome.google.com/webstore" class="btn btn-primary btn-lg" target="_blank">
+                        <span class="btn-icon">�Chrome</span>
+                        Install Free
+                    </a>
+                    <a href="#demo" class="btn btn-secondary btn-lg">
+                        <span class="btn-icon">▶️</span>
+                        Watch Demo
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">1,000+</span>
+                        <span class="stat-label">Active users</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Replies generated</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.8★</span>
+                        <span class="stat-label">Chrome rating</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="demo-container">
+                    <div class="demo-browser">
+                        <div class="demo-browser-header">
+                            <div class="browser-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="browser-url">x.com</div>
+                        </div>
+                        <div class="demo-content">
+                            <div class="demo-tweet">
+                                <div class="tweet-header">
+                                    <div class="tweet-avatar"></div>
+                                    <div class="tweet-meta">
+                                        <div class="tweet-name">Tech Creator</div>
+                                        <div class="tweet-handle">@techcreator</div>
+                                    </div>
+                                </div>
+                                <div class="tweet-text">
+                                    Just shipped a major update! 🚀 What do you think about the new features?
+                                </div>
+                                <div class="tweet-actions">
+                                    <span>💬 23</span>
+                                    <span>🔄 45</span>
+                                    <span>❤️ 128</span>
+                                </div>
+                            </div>
+                            <div class="demo-reply">
+                                <div class="reply-input">
+                                    <span class="reply-icon">✨</span>
+                                    <span class="reply-text">Generate AI reply...</span>
+                                </div>
+                                <div class="ai-suggestions">
+                                    <div class="suggestion">🎉 Congratulations on the launch! The new features look incredible...</div>
+                                    <div class="suggestion">👏 Amazing work! Really impressed with the improvements...</div>
+                                    <div class="suggestion">🔥 This is exactly what we needed! Great job on the update...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Everything you need to reply better</h2>
+                <p class="section-description">Powerful AI features that make Twitter conversations effortless</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Generate</h3>
+                    <p class="feature-description">AI generates 3 perfect reply variants in seconds. Choose from neutral, professional, friendly, or funny styles.</p>
+                    <div class="feature-details">
+                        <span class="feature-tag">4 styles</span>
+                        <span class="feature-tag">3 variants</span>
+                        <span class="feature-tag">Multi-language</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Translate</h3>
+                    <p class="feature-description">Instantly translate your replies to any language while maintaining the perfect tone and context.</p>
+                    <div class="feature-details">
+                        <span class="feature-tag">50+ languages</span>
+                        <span class="feature-tag">Context-aware</span>
+                        <span class="feature-tag">Natural tone</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3 class="feature-title">Improve</h3>
+                    <p class="feature-description">Refine your text with AI. Fix typos, improve clarity, and make your replies more impactful.</p>
+                    <div class="feature-details">
+                        <span class="feature-tag">Grammar check</span>
+                        <span class="feature-tag">Clarity boost</span>
+                        <span class="feature-tag">Style enhancement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Start generating better replies in 60 seconds</h2>
+                <p class="section-description">No setup required. Just install and start replying smarter.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Install Extension</h3>
+                        <p class="step-description">Add Reply AI to Chrome from the Web Store. It's completely free.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Create Free Account</h3>
+                        <p class="step-description">Sign up in 30 seconds. No credit card required for the free plan.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Click ✨ on Any Reply</h3>
+                        <p class="step-description">When replying on X, click the magic button and watch AI work its magic.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Done!</h3>
+                        <p class="step-description">Choose your favorite variant and post. Perfect replies every time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="social-proof-header">
+                <h2 class="section-title">Join 1,000+ creators using AI replies</h2>
+                <p class="section-description">See what our users are saying</p>
+            </div>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"This extension changed my Twitter game. I used to spend 10 minutes crafting replies, now it's instant."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Chen</div>
+                            <div class="author-title">Content Creator</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"The AI understands context perfectly. My engagement increased by 40% since I started using Reply AI."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <div class="author-name">Mike Rodriguez</div>
+                            <div class="author-title">Tech Entrepreneur</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"As a non-native English speaker, this helps me sound natural and confident in my replies. Absolutely essential."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <div class="author-name">Yuki Tanaka</div>
+                            <div class="author-title">Developer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Choose your plan</h2>
+                <p class="section-description">Start free, upgrade when you need more</p>
+            </div>
+            
+            <!-- Pricing Toggle -->
+            <div class="pricing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Yearly <span class="toggle-badge">Save 20%</span></span>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="pricing-cards">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="plan-name">Free</h3>
+                        <div class="plan-price">
+                            <span class="price-amount">€0</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-description">Perfect for trying out Reply AI</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span><strong>5</strong> AI replies per month</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>All 3 AI tools</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Chrome extension</span>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html" class="btn btn-secondary btn-full">Get Started Free</a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="pricing-card pricing-card-popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header-card">
+                        <h3 class="plan-name">Premium</h3>
+                        <div class="plan-price">
+                            <span class="price-amount monthly-price">€4.99</span>
+                            <span class="price-amount yearly-price" style="display: none;">€3.99</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-description">For regular Twitter users</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span><strong>50</strong> AI replies per month</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>All 3 AI tools</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Faster responses</span>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html?plan=premium" class="btn btn-primary btn-full">Go Premium</a>
+                </div>
+
+                <!-- Premium+ Plan -->
+                <div class="pricing-card pricing-card-premium-plus">
+                    <div class="premium-plus-badge">Best Value</div>
+                    <div class="pricing-header-card">
+                        <h3 class="plan-name">Premium+</h3>
+                        <div class="plan-price">
+                            <span class="price-amount monthly-price">€9.99</span>
+                            <span class="price-amount yearly-price" style="display: none;">€7.99</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-description">For power users</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span><strong>Unlimited</strong> AI replies</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>All 3 AI tools</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Priority API</span>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html?plan=premium_plus" class="btn btn-premium-plus btn-full">Go Premium+</a>
+                </div>
+            </div>
+            
+            <div class="pricing-cta">
+                <p>Need more details? <a href="pricing.html">See all plans and features</a></p>
+            </div>
+        </div>
+    </section>
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to reply smarter?</h2>
+                <p class="cta-description">Join thousands of users who never struggle with what to say again.</p>
+                <div class="cta-actions">
+                    <a href="signup.html" class="btn btn-primary btn-lg">Start for free</a>
+                    <span class="cta-note">No credit card required • 5 free replies per month</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <span class="brand-icon">✨</span>
+                        <span class="brand-text">Reply AI</span>
+                    </div>
+                    <p class="brand-description">Smart Twitter replies powered by AI</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="#how-it-works">How it works</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Reply AI. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="GitHub">⚡</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <script>
+        // Navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .step, .testimonial').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

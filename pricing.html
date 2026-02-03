@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Reply AI</title>
+    <meta name="description" content="Choose your plan. Free forever with 5 replies per month, or unlimited for €9.99/month.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">✨</span>
+                <span class="brand-text">Reply AI</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="login.html" class="nav-link nav-link-secondary">Log in</a>
+                <a href="signup.html" class="btn btn-primary btn-sm">Sign up</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Pricing Hero -->
+    <section class="pricing-hero">
+        <div class="container">
+            <div class="pricing-header">
+                <h1 class="pricing-title">Simple, transparent pricing</h1>
+                <p class="pricing-description">Choose the plan that works for you. Start free, upgrade anytime.</p>
+            </div>
+            
+            <!-- Pricing Toggle -->
+            <div class="pricing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Yearly <span class="toggle-badge">Save 20%</span></span>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="pricing-cards">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="plan-name">Free</h3>
+                        <div class="plan-price">
+                            <span class="price-amount">€0</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-description">Perfect for trying out Reply AI</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span><strong>5</strong> AI replies per month</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>All 3 AI tools (Generate, Translate, Improve)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Chrome extension</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Basic support</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">❌</span>
+                            <span>Priority API access</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">❌</span>
+                            <span>Reply history</span>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html" class="btn btn-secondary btn-full">Get Started Free</a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="pricing-card pricing-card-popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header-card">
+                        <h3 class="plan-name">Premium</h3>
+                        <div class="plan-price">
+                            <span class="price-amount monthly-price">€4.99</span>
+                            <span class="price-amount yearly-price" style="display: none;">€3.99</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-description">For regular Twitter users</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span><strong>50</strong> AI replies per month</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>All 3 AI tools (Generate, Translate, Improve)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Chrome extension</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Faster API responses</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">❌</span>
+                            <span>Reply history</span>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html?plan=premium" class="btn btn-primary btn-full">Go Premium</a>
+                </div>
+
+                <!-- Premium+ Plan -->
+                <div class="pricing-card pricing-card-premium-plus">
+                    <div class="premium-plus-badge">Best Value</div>
+                    <div class="pricing-header-card">
+                        <h3 class="plan-name">Premium+</h3>
+                        <div class="plan-price">
+                            <span class="price-amount monthly-price">€9.99</span>
+                            <span class="price-amount yearly-price" style="display: none;">€7.99</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="plan-description">For power users and professionals</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span><strong>Unlimited</strong> AI replies</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>All 3 AI tools (Generate, Translate, Improve)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Chrome extension</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Fastest API responses</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Reply history & analytics</span>
+                        </div>
+                    </div>
+                    
+                    <a href="signup.html?plan=premium_plus" class="btn btn-premium-plus btn-full">Go Premium+</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="faq-header">
+                <h2 class="section-title">Frequently asked questions</h2>
+                <p class="section-description">Got questions? We've got answers.</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does the free plan work?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The free plan gives you 5 AI-generated replies per month. You get access to all features including generate, translate, and improve. Perfect for trying out the service or light usage.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I change plans anytime?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! You can upgrade or downgrade your plan at any time. When upgrading, you'll be charged prorated amounts. When downgrading, changes take effect at the next billing cycle.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, Mastercard, American Express), as well as PayPal. All payments are processed securely through Stripe.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is my data secure?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. We use industry-standard encryption for all data transmission and storage. Your replies and personal information are never shared with third parties. We don't store your Twitter data.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you offer refunds?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied with Reply AI, contact our support team within 30 days for a full refund.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I use Reply AI on mobile?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Reply AI is currently available as a Chrome extension for desktop browsers. We're working on mobile apps for iOS and Android, which will be available soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to get started?</h2>
+                <p class="cta-description">Join thousands of users who reply smarter with AI.</p>
+                <div class="cta-actions">
+                    <a href="signup.html" class="btn btn-primary btn-lg">Start for free</a>
+                    <span class="cta-note">No credit card required • 5 free replies per month</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <span class="brand-icon">✨</span>
+                        <span class="brand-text">Reply AI</span>
+                    </div>
+                    <p class="brand-description">Smart Twitter replies powered by AI</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="index.html#features">Features</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="index.html#how-it-works">How it works</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Reply AI. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="GitHub">⚡</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <script>
+        // Navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Billing toggle
+        const billingToggle = document.getElementById('billingToggle');
+        const monthlyPrices = document.querySelectorAll('.monthly-price');
+        const yearlyPrices = document.querySelectorAll('.yearly-price');
+
+        billingToggle.addEventListener('change', () => {
+            const isYearly = billingToggle.checked;
+            
+            monthlyPrices.forEach(price => {
+                price.style.display = isYearly ? 'none' : 'inline';
+            });
+            
+            yearlyPrices.forEach(price => {
+                price.style.display = isYearly ? 'inline' : 'none';
+            });
+        });
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = question.querySelector('.faq-icon');
+                
+                // Close other items
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        const otherItem = otherQuestion.parentElement;
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        const otherIcon = otherQuestion.querySelector('.faq-icon');
+                        
+                        otherAnswer.style.maxHeight = null;
+                        otherIcon.textContent = '+';
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = null;
+                    icon.textContent = '+';
+                    faqItem.classList.remove('active');
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.textContent = '−';
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* Pricing specific styles */
+        .pricing-hero {
+            padding: 140px 0 var(--spacing-2xl);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .pricing-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.02em;
+        }
+
+        .pricing-description {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .toggle-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .toggle-badge {
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            margin-left: var(--spacing-xs);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-tertiary);
+            transition: var(--transition-normal);
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background: white;
+            transition: var(--transition-normal);
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background: var(--accent);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(28px);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            backdrop-filter: blur(8px);
+            position: relative;
+            transition: all var(--transition-normal);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card-popular {
+            border-color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(29, 155, 240, 0.3);
+        }
+
+        .pricing-card-premium-plus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .pricing-card-premium-plus:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-2xl);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .premium-plus-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #8b5cf6;
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-2xl);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .btn-premium-plus {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-premium-plus:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg), 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .feature-icon {
+            color: #10b981;
+            font-size: var(--font-size-lg);
+            flex-shrink: 0;
+        }
+
+        .feature-item:has(.feature-icon:contains("❌")) .feature-icon {
+            color: #6b7280;
+        }
+
+        .pricing-header-card {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .plan-name {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .plan-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .price-amount {
+            font-size: var(--font-size-5xl);
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .price-period {
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+        }
+
+        .plan-description {
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .feature-icon {
+            color: #10b981;
+            font-size: var(--font-size-lg);
+            flex-shrink: 0;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .faq {
+            padding: var(--spacing-2xl) 0;
+            background: var(--bg-secondary);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .faq-question:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .faq-icon {
+            font-size: var(--font-size-xl);
+            color: var(--accent);
+            transition: transform var(--transition-fast);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-normal);
+        }
+
+        .faq-answer p {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-question {
+            background: var(--bg-tertiary);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card-popular {
+                transform: none;
+            }
+
+            .pricing-toggle {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .pricing-title {
+                font-size: var(--font-size-3xl);
+            }
+        }
+    </style>
+</body>
+</html>
