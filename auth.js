@@ -1,7 +1,7 @@
 // Configuration
 const API_BASE_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:3000' 
-    : 'https://your-backend-domain.railway.app';
+    : 'https://peaceful-happiness-production-ef9d.up.railway.app';
 
 // Global auth state
 let currentUser = null;

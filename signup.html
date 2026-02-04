@@ -108,15 +108,6 @@
                         Creating account...
                     </span>
                 </button>
-
-                <div class="form-divider">
-                    <span>or</span>
-                </div>
-
-                <button type="button" class="btn btn-secondary btn-full" id="googleSignupBtn">
-                    <span class="btn-icon">🔍</span>
-                    Sign up with Google
-                </button>
             </form>
 
             <div class="auth-footer">
@@ -198,8 +189,8 @@
             }
 
             // Password validation
-            if (!password || password.length < 6) {
-                showFieldError('passwordError', 'Password must be at least 6 characters long');
+            if (!password || password.length < 8) {
+                showFieldError('passwordError', 'Password must be at least 8 characters long');
                 isValid = false;
             }
 
@@ -233,7 +224,7 @@
             showLoading(true);
             
             try {
-                const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+                const response = await fetch('https://peaceful-happiness-production-ef9d.up.railway.app/auth/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -245,7 +236,7 @@
                 
                 if (response.ok) {
                     // Store token
-                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('auth_token', data.token);
                     localStorage.setItem('user', JSON.stringify(data.user));
                     
                     // Show success message
@@ -254,21 +245,25 @@
                     // Send token to extension
                     sendTokenToExtension(data.token);
                     
-                    // Countdown and close
-                    startCountdown();
+                    // Redirect to pricing after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'pricing.html';
+                    }, 2000);
                 } else {
-                    showError(data.error || 'Account creation failed');
+                    // Handle specific error messages
+                    if (data.error === 'Email already exists') {
+                        showError('This email is already registered. Try logging in instead.');
+                    } else if (data.error === 'Password too short') {
+                        showError('Password must be at least 8 characters long.');
+                    } else {
+                        showError(data.error || 'Account creation failed');
+                    }
                 }
             } catch (error) {
                 showError('Network error. Please try again.');
             } finally {
                 showLoading(false);
             }
-        });
-
-        // Google signup (placeholder)
-        document.getElementById('googleSignupBtn').addEventListener('click', () => {
-            showError('Google signup coming soon!');
         });
 
         // Helper functions
