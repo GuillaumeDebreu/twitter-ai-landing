@@ -52,7 +52,7 @@
             <div class="pricing-toggle">
                 <span class="toggle-label">Monthly</span>
                 <label class="toggle-switch">
-                    <input type="checkbox" id="billingToggle">
+                    <input type="checkbox" id="pricing-toggle">
                     <span class="toggle-slider"></span>
                 </label>
                 <span class="toggle-label">Yearly <span class="toggle-badge">Save 20%</span></span>
@@ -141,7 +141,14 @@
                         </div>
                     </div>
                     
-                    <a href="signup.html?plan=premium" class="btn btn-primary btn-full">Go Premium</a>
+                    <button 
+                        class="btn btn-primary btn-full"
+                        data-plan="premium"
+                        data-period="monthly"
+                        onclick="handleUpgrade(event)"
+                    >
+                        Upgrade to Premium - €4.99/mo
+                    </button>
                 </div>
 
                 <!-- Premium+ Plan -->
@@ -184,7 +191,14 @@
                         </div>
                     </div>
                     
-                    <a href="signup.html?plan=premium_plus" class="btn btn-premium-plus btn-full">Go Premium+</a>
+                    <button 
+                        class="btn btn-premium-plus btn-full"
+                        data-plan="premium_plus"
+                        data-period="monthly"
+                        onclick="handleUpgrade(event)"
+                    >
+                        Upgrade to Premium+ - €9.99/mo
+                    </button>
                 </div>
             </div>
         </div>
@@ -710,5 +724,6 @@
             }
         }
     </style>
+    <script src="checkout.js"></script>
 </body>
 </html>
