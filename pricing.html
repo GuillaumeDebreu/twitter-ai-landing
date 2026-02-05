@@ -345,21 +345,23 @@
         });
 
         // Billing toggle
-        const billingToggle = document.getElementById('billingToggle');
+        const billingToggle = document.getElementById('pricing-toggle');
         const monthlyPrices = document.querySelectorAll('.monthly-price');
         const yearlyPrices = document.querySelectorAll('.yearly-price');
 
-        billingToggle.addEventListener('change', () => {
-            const isYearly = billingToggle.checked;
-            
-            monthlyPrices.forEach(price => {
-                price.style.display = isYearly ? 'none' : 'inline';
+        if (billingToggle) {
+            billingToggle.addEventListener('change', () => {
+                const isYearly = billingToggle.checked;
+                
+                monthlyPrices.forEach(price => {
+                    price.style.display = isYearly ? 'none' : 'inline';
+                });
+                
+                yearlyPrices.forEach(price => {
+                    price.style.display = isYearly ? 'inline' : 'none';
+                });
             });
-            
-            yearlyPrices.forEach(price => {
-                price.style.display = isYearly ? 'inline' : 'none';
-            });
-        });
+        }
 
         // FAQ Accordion
         const faqQuestions = document.querySelectorAll('.faq-question');
