@@ -57,20 +57,24 @@ async function verifyToken(token) {
 // Setup auth event listeners
 function setupAuthListeners() {
     // Listen for messages from Chrome extension
-    if (typeof chrome !== 'undefined' && chrome.runtime) {
-        chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-            if (message.type === 'GET_AUTH_TOKEN') {
-                sendResponse({
-                    token: authToken,
-                    user: currentUser
-                });
-            }
-            
-            if (message.type === 'LOGOUT') {
-                logout();
-                sendResponse({ success: true });
-            }
-        });
+    try {
+        if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onMessage) {
+            chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+                if (message.type === 'GET_AUTH_TOKEN') {
+                    sendResponse({
+                        token: authToken,
+                        user: currentUser
+                    });
+                }
+                
+                if (message.type === 'LOGOUT') {
+                    logout();
+                    sendResponse({ success: true });
+                }
+            });
+        }
+    } catch (error) {
+        console.log('Chrome extension API not available:', error);
     }
     
     // Handle auth callback from extension
