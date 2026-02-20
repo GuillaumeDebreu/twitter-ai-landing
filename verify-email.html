@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification email - Reply AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-logo">
+            <span class="brand-icon">✨</span>
+            <span class="brand-text">Reply AI</span>
+        </div>
+
+        <div class="auth-card" id="loadingCard">
+            <div class="auth-header">
+                <h1>Verification en cours...</h1>
+                <p>Un instant, on verifie ton email</p>
+            </div>
+            <div style="text-align: center; padding: 40px;">
+                <span class="spinner" style="display: inline-block;"></span>
+            </div>
+        </div>
+
+        <div class="auth-success" id="successMessage" style="display: none;">
+            <div class="success-icon">✅</div>
+            <h2>Email verifie !</h2>
+            <p>Ton compte est maintenant actif. Tu peux utiliser Reply AI.</p>
+            <a href="login.html" class="btn btn-primary" style="margin-top: 20px;">Se connecter</a>
+        </div>
+
+        <div class="auth-success" id="alreadyVerified" style="display: none;">
+            <div class="success-icon">✅</div>
+            <h2>Deja verifie</h2>
+            <p>Ton email a deja ete verifie. Tu peux te connecter.</p>
+            <a href="login.html" class="btn btn-primary" style="margin-top: 20px;">Se connecter</a>
+        </div>
+
+        <div class="auth-error" id="errorMessage" style="display: none;">
+            <div class="error-icon">❌</div>
+            <h2>Erreur</h2>
+            <p id="errorText">Une erreur s'est produite.</p>
+            <a href="signup.html" class="btn btn-secondary">Reessayer l'inscription</a>
+        </div>
+
+        <div class="auth-error" id="invalidToken" style="display: none;">
+            <div class="error-icon">⏰</div>
+            <h2>Lien invalide ou expire</h2>
+            <p>Ce lien de verification n'est plus valide. Connecte-toi pour renvoyer un nouveau lien.</p>
+            <a href="login.html" class="btn btn-secondary">Se connecter</a>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'https://peaceful-happiness-production-ef9d.up.railway.app';
+
+        const loadingCard = document.getElementById('loadingCard');
+        const successMessage = document.getElementById('successMessage');
+        const alreadyVerified = document.getElementById('alreadyVerified');
+        const errorMessage = document.getElementById('errorMessage');
+        const invalidToken = document.getElementById('invalidToken');
+
+        // Get token from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        // If no token, show error
+        if (!token) {
+            loadingCard.style.display = 'none';
+            invalidToken.style.display = 'block';
+        } else {
+            // Verify email automatically
+            verifyEmail();
+        }
+
+        async function verifyEmail() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/auth/verify-email`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    if (response.status === 400) {
+                        // Token invalid or expired
+                        loadingCard.style.display = 'none';
+                        invalidToken.style.display = 'block';
+                    } else {
+                        showError(data.error || 'Une erreur s\'est produite');
+                    }
+                    return;
+                }
+
+                // Success
+                loadingCard.style.display = 'none';
+                if (data.alreadyVerified) {
+                    alreadyVerified.style.display = 'block';
+                } else {
+                    successMessage.style.display = 'block';
+                }
+
+            } catch (error) {
+                showError('Erreur reseau. Reessaie.');
+            }
+        }
+
+        function showError(message) {
+            loadingCard.style.display = 'none';
+            document.getElementById('errorText').textContent = message;
+            errorMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
