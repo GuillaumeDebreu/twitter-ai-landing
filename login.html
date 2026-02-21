@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Reply AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <a href="index.html" class="auth-logo">
+            <span class="brand-icon">✨</span>
+            <span class="brand-text">Reply AI</span>
+        </a>
+
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Connexion</h1>
+                <p>Content de te revoir !</p>
+            </div>
+
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="ton@email.com" autocomplete="email">
+                    <span class="form-error" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required placeholder="Ton mot de passe" autocomplete="current-password">
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <span class="toggle-icon">👁️</span>
+                        </button>
+                    </div>
+                    <a href="forgot-password.html" class="forgot-password-link">Mot de passe oublie ?</a>
+                    <span class="form-error" id="passwordError"></span>
+                </div>
+
+                <span class="form-error" id="globalError" style="text-align:center; display:block;"></span>
+
+                <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                    <span class="btn-text">Se connecter</span>
+                    <span class="btn-loading" style="display: none;">
+                        <span class="spinner"></span>
+                        Connexion...
+                    </span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Pas encore de compte ? <a href="signup.html">Creer un compte</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'https://peaceful-happiness-production-ef9d.up.railway.app';
+
+        // If already logged in, redirect to dashboard
+        if (localStorage.getItem('replyai_token')) {
+            window.location.href = 'dashboard.html';
+        }
+
+        const loginForm = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.getElementById('passwordToggle');
+
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            passwordToggle.querySelector('.toggle-icon').textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            clearErrors();
+
+            const email = document.getElementById('email').value.trim();
+            const password = passwordInput.value;
+
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email requis';
+                return;
+            }
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Mot de passe requis';
+                return;
+            }
+
+            showLoading(true);
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    showGlobalError(data.error || 'Email ou mot de passe incorrect');
+                    return;
+                }
+
+                // Store token and user info
+                if (data.token) {
+                    localStorage.setItem('replyai_token', data.token);
+                }
+                if (data.user) {
+                    localStorage.setItem('replyai_user', JSON.stringify(data.user));
+                }
+
+                // Redirect to dashboard or original destination
+                const redirectTo = new URLSearchParams(window.location.search).get('redirect') || 'dashboard.html';
+                window.location.href = redirectTo;
+
+            } catch (error) {
+                showGlobalError('Erreur reseau. Verifie ta connexion et reessaie.');
+            } finally {
+                showLoading(false);
+            }
+        });
+
+        function showLoading(show) {
+            submitBtn.disabled = show;
+            submitBtn.querySelector('.btn-text').style.display = show ? 'none' : 'inline';
+            submitBtn.querySelector('.btn-loading').style.display = show ? 'inline-flex' : 'none';
+        }
+
+        function showGlobalError(message) {
+            document.getElementById('globalError').textContent = message;
+        }
+
+        function clearErrors() {
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('globalError').textContent = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon compte - Reply AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.8);
+            --bg-tertiary: rgba(30, 41, 59, 0.5);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --gradient-1: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --success: #10b981;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon { font-size: 24px; }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-email {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Main */
+        .main {
+            padding: 100px 24px 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 640px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(20px);
+        }
+
+        .card-full { grid-column: 1 / -1; }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: var(--gradient-1);
+            flex-shrink: 0;
+        }
+
+        .card-icon.danger { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .card-icon.warning { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Plan badge */
+        .plan-display {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .plan-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 18px;
+            width: fit-content;
+        }
+
+        .plan-badge.free {
+            background: rgba(100, 116, 139, 0.2);
+            border: 1px solid rgba(100, 116, 139, 0.4);
+            color: #94a3b8;
+        }
+
+        .plan-badge.premium {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #60a5fa;
+        }
+
+        .plan-badge.premium_plus {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #a78bfa;
+        }
+
+        .plan-details {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .plan-details li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .plan-details li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .plan-limit {
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .plan-limit strong {
+            color: var(--text-primary);
+        }
+
+        /* Usage bar */
+        .usage-section { margin-top: 8px; }
+
+        .usage-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .usage-bar-bg {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .usage-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--gradient-1);
+            transition: width 0.5s ease;
+        }
+
+        /* Info rows */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-row:last-child { border-bottom: none; }
+
+        .info-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.18);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        .btn-danger-solid {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger-solid:hover {
+            background: var(--danger-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-full { width: 100%; }
+
+        .btn-loading-inner {
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Loading state */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: #1e293b;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            transform: scale(0.95);
+            transition: transform 0.2s;
+        }
+
+        .modal-overlay.active .modal { transform: scale(1); }
+
+        .modal-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .modal h2 {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .modal-warning {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #f87171;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-actions .btn { flex: 1; }
+
+        /* Alert */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+        }
+
+        /* Upgrade CTA */
+        .upgrade-cta {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .upgrade-cta p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        /* Close account section */
+        .danger-zone {
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .danger-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .danger-list {
+            list-style: none;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .danger-list li {
+            font-size: 13px;
+            color: #f87171;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .danger-list li::before { content: '•'; }
+
+        /* Error page */
+        .auth-error-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .auth-error-page .icon { font-size: 64px; margin-bottom: 16px; }
+        .auth-error-page h2 { font-size: 24px; margin-bottom: 8px; }
+        .auth-error-page p { color: var(--text-secondary); margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+
+    <!-- Auth error page (shown if not logged in) -->
+    <div id="authErrorPage" class="auth-error-page" style="display:none;">
+        <div class="icon">🔒</div>
+        <h2>Acces non autorise</h2>
+        <p>Tu dois etre connecte pour acceder a ton espace compte.</p>
+        <a href="login.html" class="btn btn-primary">Se connecter</a>
+    </div>
+
+    <!-- Main app (shown when logged in) -->
+    <div id="appContent" style="display:none;">
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">✨</span>
+                    <span class="logo-text">Reply AI</span>
+                </a>
+                <div class="nav-user">
+                    <span class="user-email" id="navEmail"></span>
+                    <button class="btn btn-secondary" onclick="logout()" style="padding: 8px 16px; font-size: 13px;">
+                        Deconnexion
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main">
+            <div class="page-header">
+                <h1>Mon compte</h1>
+                <p>Gere ton abonnement et tes informations personnelles</p>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <div class="dashboard-grid">
+
+                <!-- Subscription plan card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">💎</div>
+                        <div>
+                            <div class="card-title">Mon abonnement</div>
+                            <div class="card-subtitle">Plan actuel et limites</div>
+                        </div>
+                    </div>
+
+                    <div class="plan-display" id="planDisplay">
+                        <!-- Filled by JS -->
+                        <div class="skeleton" style="height:48px; width:160px;"></div>
+                        <div class="skeleton" style="height:60px;"></div>
+                    </div>
+                </div>
+
+                <!-- Account info card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">👤</div>
+                        <div>
+                            <div class="card-title">Informations</div>
+                            <div class="card-subtitle">Tes donnees de compte</div>
+                        </div>
+                    </div>
+
+                    <div id="accountInfo">
+                        <div class="info-row">
+                            <span class="info-label">Email</span>
+                            <span class="info-value skeleton" id="infoEmail" style="height:20px; width:160px;">&nbsp;</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Membre depuis</span>
+                            <span class="info-value skeleton" id="infoCreated" style="height:20px; width:100px;">&nbsp;</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Statut email</span>
+                            <span class="info-value" id="infoVerified">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage today card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon warning">📊</div>
+                        <div>
+                            <div class="card-title">Utilisation</div>
+                            <div class="card-subtitle">Replies generes aujourd'hui</div>
+                        </div>
+                    </div>
+                    <div id="usageDisplay">
+                        <div class="skeleton" style="height:60px;"></div>
+                    </div>
+                </div>
+
+                <!-- Close account card -->
+                <div class="card danger-zone">
+                    <div class="card-header">
+                        <div class="card-icon danger">⚠️</div>
+                        <div>
+                            <div class="card-title">Zone dangereuse</div>
+                            <div class="card-subtitle">Actions irreversibles</div>
+                        </div>
+                    </div>
+
+                    <p class="danger-description">
+                        La suppression de ton compte est permanente et irreversible.
+                        Toutes tes donnees seront effacees.
+                    </p>
+
+                    <ul class="danger-list">
+                        <li>Ton compte sera desactive immediatement</li>
+                        <li>Toutes tes donnees seront supprimees</li>
+                        <li>Ton acces a l'extension sera revoque</li>
+                        <li>Aucun remboursement ne sera effectue</li>
+                    </ul>
+
+                    <button class="btn btn-danger btn-full" onclick="openDeleteModal()">
+                        Supprimer mon compte
+                    </button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Delete account modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <div class="modal-icon">🗑️</div>
+            <h2>Supprimer le compte ?</h2>
+            <p>Cette action est <strong>permanente et irreversible</strong>. Toutes tes donnees, ton historique et ton abonnement seront supprimes definitivement.</p>
+            <div class="modal-warning">
+                Es-tu certain de vouloir supprimer ton compte ?
+            </div>
+            <div id="deleteAlert"></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeDeleteModal()">Annuler</button>
+                <button class="btn btn-danger-solid" id="confirmDeleteBtn" onclick="deleteAccount()">
+                    <span class="btn-text-inner">Oui, supprimer</span>
+                    <span class="btn-loading-inner" id="deleteLoading">
+                        <span class="spinner"></span>
+                        Suppression...
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'https://peaceful-happiness-production-ef9d.up.railway.app';
+
+        const PLANS = {
+            free: {
+                label: 'Free',
+                emoji: '🆓',
+                cssClass: 'free',
+                features: ['5 replies AI par jour', 'Tous les 3 outils AI', 'Extension Chrome', 'Support basique'],
+                dailyLimit: 5,
+                price: '€0/mois'
+            },
+            premium: {
+                label: 'Premium',
+                emoji: '⭐',
+                cssClass: 'premium',
+                features: ['25 replies AI par jour', 'Tous les 3 outils AI', 'Support prioritaire', 'Reponses rapides'],
+                dailyLimit: 25,
+                price: '€4.99/mois'
+            },
+            premium_plus: {
+                label: 'Premium+',
+                emoji: '🚀',
+                cssClass: 'premium_plus',
+                features: ['200 replies AI par jour', 'Tous les 3 outils AI', 'Support prioritaire', 'Reponses les plus rapides'],
+                dailyLimit: 200,
+                price: '€9.99/mois'
+            }
+        };
+
+        // --- Auth check ---
+        const token = localStorage.getItem('replyai_token');
+
+        if (!token) {
+            document.getElementById('authErrorPage').style.display = 'flex';
+        } else {
+            document.getElementById('appContent').style.display = 'block';
+            loadUserData();
+        }
+
+        // --- Load user data ---
+        async function loadUserData() {
+            // Show cached user info instantly while fetching
+            const cached = localStorage.getItem('replyai_user');
+            if (cached) {
+                try {
+                    renderUserData(JSON.parse(cached));
+                } catch (e) { /* ignore */ }
+            }
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/auth/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.status === 401) {
+                    // Token expired
+                    logout();
+                    return;
+                }
+
+                if (!response.ok) {
+                    // Try alternative endpoint
+                    const r2 = await fetch(`${BACKEND_URL}/api/user`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (r2.status === 401) { logout(); return; }
+                    if (!r2.ok) throw new Error('Could not load user data');
+                    const d2 = await r2.json();
+                    const user = d2.user || d2;
+                    localStorage.setItem('replyai_user', JSON.stringify(user));
+                    renderUserData(user);
+                    return;
+                }
+
+                const data = await response.json();
+                const user = data.user || data;
+                localStorage.setItem('replyai_user', JSON.stringify(user));
+                renderUserData(user);
+
+            } catch (error) {
+                // Render from cache if available
+                if (!cached) {
+                    showAlert('Impossible de charger les informations du compte. Verifie ta connexion.', 'error');
+                }
+            }
+        }
+
+        function renderUserData(user) {
+            // Nav email
+            document.getElementById('navEmail').textContent = user.email || '';
+
+            // Account info
+            const emailEl = document.getElementById('infoEmail');
+            emailEl.textContent = user.email || '—';
+            emailEl.className = 'info-value';
+            emailEl.style = '';
+
+            const createdEl = document.getElementById('infoCreated');
+            if (user.createdAt || user.created_at) {
+                const date = new Date(user.createdAt || user.created_at);
+                createdEl.textContent = date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+            } else {
+                createdEl.textContent = '—';
+            }
+            createdEl.className = 'info-value';
+            createdEl.style = '';
+
+            const verifiedEl = document.getElementById('infoVerified');
+            const isVerified = user.emailVerified || user.email_verified || user.verified;
+            verifiedEl.textContent = isVerified ? '✅ Verifie' : '⚠️ Non verifie';
+            verifiedEl.style.color = isVerified ? '#34d399' : '#f59e0b';
+
+            // Plan
+            const planKey = normalizePlan(user.plan || user.subscription || user.tier || 'free');
+            renderPlan(planKey, user);
+
+            // Usage
+            renderUsage(user, planKey);
+        }
+
+        function normalizePlan(plan) {
+            if (!plan) return 'free';
+            const p = plan.toString().toLowerCase().replace(/[- ]/g, '_');
+            if (p.includes('plus') || p.includes('premium_plus') || p === 'premium+') return 'premium_plus';
+            if (p.includes('premium')) return 'premium';
+            return 'free';
+        }
+
+        function renderPlan(planKey, user) {
+            const plan = PLANS[planKey] || PLANS.free;
+            const container = document.getElementById('planDisplay');
+
+            container.innerHTML = `
+                <div class="plan-badge ${plan.cssClass}">
+                    <span>${plan.emoji}</span>
+                    <span>${plan.label}</span>
+                </div>
+                <ul class="plan-details">
+                    ${plan.features.map(f => `<li>${f}</li>`).join('')}
+                </ul>
+                <div class="plan-limit">
+                    Limite : <strong>${plan.dailyLimit} replies/jour</strong> &bull; ${plan.price}
+                </div>
+                ${planKey === 'free' ? `
+                <div class="upgrade-cta">
+                    <p>Passe a Premium pour 5x plus de replies et un support prioritaire.</p>
+                    <a href="index.html#pricing" class="btn btn-primary" style="width:100%; justify-content:center;">
+                        Voir les offres
+                    </a>
+                </div>` : ''}
+            `;
+        }
+
+        function renderUsage(user, planKey) {
+            const plan = PLANS[planKey] || PLANS.free;
+            const used = user.dailyUsage || user.daily_usage || user.usageToday || user.usage_today || 0;
+            const limit = plan.dailyLimit;
+            const pct = Math.min(100, Math.round((used / limit) * 100));
+
+            const barColor = pct >= 90 ? '#ef4444' : pct >= 70 ? '#f59e0b' : '#3b82f6';
+
+            document.getElementById('usageDisplay').innerHTML = `
+                <div class="usage-section">
+                    <div class="usage-label">
+                        <span>Aujourd'hui</span>
+                        <span>${used} / ${limit} replies</span>
+                    </div>
+                    <div class="usage-bar-bg">
+                        <div class="usage-bar-fill" style="width:${pct}%; background:${barColor};"></div>
+                    </div>
+                    <div style="font-size:13px; color:var(--text-muted); margin-top:8px;">
+                        ${limit - used} reply${limit - used !== 1 ? 's' : ''} restante${limit - used !== 1 ? 's' : ''} aujourd'hui
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- Logout ---
+        function logout() {
+            localStorage.removeItem('replyai_token');
+            localStorage.removeItem('replyai_user');
+            window.location.href = 'login.html';
+        }
+
+        // --- Delete account modal ---
+        function openDeleteModal() {
+            document.getElementById('deleteModal').classList.add('active');
+            document.getElementById('deleteAlert').innerHTML = '';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('active');
+        }
+
+        // Close on overlay click
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDeleteModal();
+        });
+
+        async function deleteAccount() {
+            const btn = document.getElementById('confirmDeleteBtn');
+            const textEl = btn.querySelector('.btn-text-inner');
+            const loadingEl = document.getElementById('deleteLoading');
+
+            btn.disabled = true;
+            textEl.style.display = 'none';
+            loadingEl.style.display = 'inline-flex';
+
+            try {
+                // Try DELETE /auth/me first, then DELETE /api/user
+                let response = await fetch(`${BACKEND_URL}/auth/me`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.status === 404 || response.status === 405) {
+                    // Try alternative endpoint
+                    response = await fetch(`${BACKEND_URL}/api/user`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                }
+
+                if (response.status === 401) {
+                    logout();
+                    return;
+                }
+
+                if (!response.ok) {
+                    const data = await response.json().catch(() => ({}));
+                    throw new Error(data.error || 'Erreur lors de la suppression');
+                }
+
+                // Success: clear local data and redirect
+                localStorage.removeItem('replyai_token');
+                localStorage.removeItem('replyai_user');
+                closeDeleteModal();
+                window.location.href = 'index.html?deleted=1';
+
+            } catch (error) {
+                document.getElementById('deleteAlert').innerHTML = `
+                    <div class="alert alert-error" style="margin-bottom:16px;">
+                        ${error.message || 'Erreur reseau. Reessaie.'}
+                    </div>
+                `;
+            } finally {
+                btn.disabled = false;
+                textEl.style.display = 'inline';
+                loadingEl.style.display = 'none';
+            }
+        }
+
+        // --- Helpers ---
+        function showAlert(message, type) {
+            document.getElementById('alertContainer').innerHTML = `
+                <div class="alert alert-${type}" style="margin-bottom:24px;">${message}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
