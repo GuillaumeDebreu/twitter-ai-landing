@@ -27,15 +27,19 @@
         <div class="auth-success" id="successMessage" style="display: none;">
             <div class="success-icon">✅</div>
             <h2>Email verifie !</h2>
-            <p>Ton compte est maintenant actif. Tu peux utiliser Reply AI.</p>
-            <a href="login.html" class="btn btn-primary" style="margin-top: 20px;">Se connecter</a>
+            <p>Ton compte est actif. Redirection vers ton espace compte...</p>
+            <div style="text-align: center; padding: 10px;">
+                <span class="spinner" style="display: inline-block; border-color: rgba(16,185,129,0.3); border-top-color: #10b981;"></span>
+            </div>
         </div>
 
         <div class="auth-success" id="alreadyVerified" style="display: none;">
             <div class="success-icon">✅</div>
             <h2>Deja verifie</h2>
-            <p>Ton email a deja ete verifie. Tu peux te connecter.</p>
-            <a href="login.html" class="btn btn-primary" style="margin-top: 20px;">Se connecter</a>
+            <p>Ton email a deja ete verifie. Redirection vers ton espace compte...</p>
+            <div style="text-align: center; padding: 10px;">
+                <span class="spinner" style="display: inline-block; border-color: rgba(16,185,129,0.3); border-top-color: #10b981;"></span>
+            </div>
         </div>
 
         <div class="auth-error" id="errorMessage" style="display: none;">
@@ -71,7 +75,6 @@
             loadingCard.style.display = 'none';
             invalidToken.style.display = 'block';
         } else {
-            // Verify email automatically
             verifyEmail();
         }
 
@@ -87,7 +90,6 @@
 
                 if (!response.ok) {
                     if (response.status === 400) {
-                        // Token invalid or expired
                         loadingCard.style.display = 'none';
                         invalidToken.style.display = 'block';
                     } else {
@@ -96,13 +98,30 @@
                     return;
                 }
 
-                // Success
+                // Store auth token if backend returns one
+                if (data.token) {
+                    localStorage.setItem('replyai_token', data.token);
+                }
+                if (data.user) {
+                    localStorage.setItem('replyai_user', JSON.stringify(data.user));
+                }
+
+                // Show success and redirect
                 loadingCard.style.display = 'none';
                 if (data.alreadyVerified) {
                     alreadyVerified.style.display = 'block';
                 } else {
                     successMessage.style.display = 'block';
                 }
+
+                // Redirect to dashboard (or login if no token returned)
+                setTimeout(() => {
+                    if (data.token) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                }, 2000);
 
             } catch (error) {
                 showError('Erreur reseau. Reessaie.');
